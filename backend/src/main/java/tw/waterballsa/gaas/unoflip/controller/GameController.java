@@ -1,9 +1,6 @@
 package tw.waterballsa.gaas.unoflip.controller;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tw.waterballsa.gaas.unoflip.presenter.GameJoinPresenter;
 import tw.waterballsa.gaas.unoflip.service.SseService;
 import tw.waterballsa.gaas.unoflip.usecase.GameJoinUseCase;
@@ -30,5 +27,15 @@ public class GameController {
         GameJoinResult gameJoinResult = gameJoinUseCase.join(playerId, joinRequest.playerName());
         sseService.sendMessage(gameJoinPresenter.broadcastEvent(playerId, gameJoinResult));
         return gameJoinPresenter.response(playerId, gameJoinResult);
+    }
+
+    @GetMapping("test")
+    public String get() {
+        return "GET";
+    }
+
+    @PostMapping("test")
+    public String post() {
+        return "POST";
     }
 }
